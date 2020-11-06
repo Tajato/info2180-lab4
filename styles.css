@@ -1,0 +1,43 @@
+body {
+    margin:0 auto;
+    padding:0px;
+   
+}
+
+section {
+    text-align: center;
+}
+.container {
+    background:purple;
+    
+}
+
+.container h1 {
+    padding:50px;
+    text-align:center;
+    color:white;
+}
+
+#search-txt {
+    font-size:20px;
+}
+
+#user-data {
+    margin-top:30px;
+    padding:10px;
+    width:75%;
+    text-align:center;
+}
+
+.btn {
+    background:green;
+    color:white;
+    padding:10px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.alert {
+    color:red;
+    text-transform: uppercase;
+}

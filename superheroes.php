@@ -65,8 +65,49 @@ $superheroes = [
 
 ?>
 
-<ul>
-<?php foreach ($superheroes as $superhero): ?>
-  <li><?= $superhero['alias']; ?></li>
-<?php endforeach; ?>
-</ul>
+
+<?php
+//Get the search term from our "q" GET variable.
+$q = $_GET['q'];
+
+ 
+//Array to hold results so that we can
+//return them back to our Ajax function.
+$results = array();
+ 
+$q = ucwords($q); // Captilaize each letter
+$q = filter_var($q, FILTER_SANITIZE_STRING); // Sanitize string
+//Loop through our array of superheroes.
+foreach($superheroes as $superhero => $val){
+ 
+    //If the search term is present in our array.
+    if($val['alias'] === $q || $val['name'] === $q){
+        //Add it to the results array.
+        $results[] = $val['alias'];
+        $results[] = $val['name'];        
+        $results[] = $val['biography'];
+       
+    } 
+    
+} 
+if ($q === "") {
+   echo "<ul>";
+foreach ($superheroes as $superhero){ 
+  echo "<li>";  
+  echo $superhero['alias']; 
+  echo "</li>";
+   } 
+echo "</ul>";
+} 
+
+elseif(count($results) === 0){
+    echo "<h1 class='alert'>No superhero found</h1>";
+ } else {
+
+  echo "<h3>"; echo $results[0]; echo "</h3>";
+  echo "<h4>";echo "A.K.A" . " ". $results[1]; echo "</h4>";
+  echo "<p>"; echo $results[2]; echo "</p>";
+}
+
+?>
+
